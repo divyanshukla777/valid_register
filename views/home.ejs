@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--<script src="/dist/jquery.validate.min.js"></script>-->
+<script src="static/script.js"></script>
+
+</head>
+
+<body name="body">
+
+    <form class="form-horizontal" method="post" onsubmit="return regPost(this);">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Register</legend>
+    </div>
+
+    <div class="control-group">
+      <!--name -->
+      <label class="control-label">Name</label>
+      <div class="controls">
+        <input type="text" name="name" id="name" minlength="3" maxlength="50" placeholder="" style="text-transform: capitalize;" class="form-control" required>
+        <p class="help-block" id="name_error_message">Name can contain only alphabets and must have length range between 3-50</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Username -->
+      <label class="control-label"  for="username">Username</label>
+      <div class="controls">
+        <input type="text" name="username" id="username"  minlength="5" maxlength="50" placeholder="" class="form-control" required>
+        <p class="help-block" id="username_error_message">Username can contain any letters, numbers or without spaces and first must be letter</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" id="check" type="button">Check Username</button><span id="avail"></span>
+      </div>
+    </div>
+  
+    <div class="control-group">
+      <!-- E-mail -->
+      <label class="control-label" for="email">E-mail</label>
+      <div class="controls">
+        <input type="email" name="email" id="email" placeholder="" class="form-control" required>
+        <p class="help-block" id="email_error_message">Not a valid E-mail!</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- Pasword -->
+      <label class="control-label"  for="password">Password</label>
+      <div class="controls">
+        <input type="password" name="password" id="password" placeholder="" class="form-control" required>
+        <p class="help-block" id="password_error_message">Password should contain atleast one lowercase, one uppercase,one number and a special char</p>
+      </div>
+    </div>
+ 
+    <div class="control-group">
+      <!-- Confirm Password -->
+      <label class="control-label"  for="confirm_password">Password (Confirm)</label>
+      <div class="controls">
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="" class="form-control" required>
+        <p class="help-block" id="retype_password_error_message">Password doesn't match</p>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <!-- AboutMe-->
+      <label class="control-label" for="AboutMe">AboutMe</label>
+      <div class="controls">
+        <textarea type="text" name="AboutMe" id="AboutMe" placeholder="" class="form-control" rows="10" required></textarea>
+        <p class="help-block" id="AboutMe_error_message">AboutMe should be upto 100 characters</p>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <!-- Image-->
+      <label class="control-label" for="image">Upload Image</label>
+      <div class="controls">
+        <input type="file" id="image" placeholder="" name="image" class="form-control" required>
+        <p class="help-block">IMAGE should be of png type</p>
+      </div>
+    </div>
+   
+    <div class="control-group">
+      <!-- Button -->
+      <div class="controls">
+        <button class="btn btn-success" type="submit">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+
+<!---->
+<script type="text/javascript">
+   function regPost(form) {
+    var data =new FormData(form);
+        $.ajax({
+          url: "/reg",
+          method: "POST",
+          data: data,
+          enctype :"multipart/form-data",
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            alert(response);
+          }
+        });
+       return false;
+      }
+</script>
+</body>
+</html>
